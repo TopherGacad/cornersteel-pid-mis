@@ -33,7 +33,7 @@
         <div class="login-contain">
             <div class="login-header">
                 <img class="form-logo" src="../../public/assets/comfac-logo.png"alt="">
-                <p class="login-title">Sign in to HR-MIS Extension</p>
+                <p class="login-title">Sign in to PID-MIS Extension</p>
             </div>
     
             <form action="../../../backend/includes/login_inc.php" method="post">
