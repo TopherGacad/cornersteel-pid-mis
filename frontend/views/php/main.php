@@ -56,11 +56,11 @@
         </div>
     </div>
 
-    <!-- OVERTIME CONTENT -->
+    <!-- BOOKINGS CONTENT -->
     <div class="overtime-container" id="overtime-container">
         <div class="content-header">
             <input type="text" class="overtime-search" id="overtime-search" placeholder="Type here to search">
-            <button class="addOvertime-btn" id="addOvertime-btn"><i class="fa-solid fa-plus"></i> Add Overtime</button>
+            <button class="addOvertime-btn" id="addOvertime-btn"><i class="fa-solid fa-plus"></i>Book Employee</button>
         </div>
         <div class="content-container">
             <table>
@@ -157,11 +157,11 @@
         </div>
     </div>
 
-    <!-- CHANGE SHIFT CONTENT -->
+    <!-- EMPLOYEES CONTENT -->
     <div class="shifts-container" id="shifts-container">
         <div class="content-header">
             <input type="text" class="shifts-search" id="shifts-search" placeholder="Type here to search">
-            <button class="addShifts-btn" id="addShifts-btn"><i class="fa-solid fa-plus"></i> Change Shift</button>
+            <button class="addShifts-btn" id="addShifts-btn"><i class="fa-solid fa-plus"></i> Add Employee</button>
         </div>
         <div class="content-container">
             <table>
@@ -251,7 +251,7 @@
         </div>
     </div>
 
-    <!-- OFFICIAL BUSINESS CONTENT -->
+    <!-- PROJECT CONTENT -->
     <div class="offBusiness-container" id="offBusiness-container">
         <div class="content-header">
             <input type="text" class="offBusiness-search" id="offBusiness-search" placeholder="Type here to search">
@@ -347,7 +347,7 @@
     </div>
 
     <!-- FORM MODALS -->
-    <!-- ADD OVERTIME MODAL -->
+    <!-- ADD BOOKINGS MODAL -->
     <div class="bg" id="bg"></div>
     <div class="overtime-modal-container" id="overtime-modal-container">
         <div class="modal-header">
@@ -464,11 +464,11 @@
         </form>
     </div>
 
-    <!-- ADD CHANGE SHIFT MODAL -->
+    <!-- ADD EMPLOYEES MODAL -->
     <div class="bg" id="bg"></div>
     <div class="shift-modal-container" id="shift-modal-container">
         <div class="modal-header">
-            <h4>ADD CHANGE SHIFT</h4>
+            <h4>ADD EMPLOYEES</h4>
         </div>
         <form action="../../../backend/includes/changeshift_inc.php" method="post" id="shift-form">
 
@@ -518,24 +518,13 @@
                         <input type="text" name="shift_lastname" id="shift-lastname" placeholder="Dela Cruz" required>
                     </div>
                     
-                    <!-- DATE EFFECTIVE -->
+                    <!-- AGE FIELD -->
                     <div class="fields">
-                        <label for="shift-date">Date Effective <span> *</span></label>
-                        <input type="date" id="shift-date" name="shift_date" required>
+                        <label for="shift-date">Age<span> *</span></label>
+                        <input type="text" id="shift-date" name="shift_date" pattern="[1-9]" minlength="1" maxlength="3" required>
                     </div>
                 </div>
                
-                <!-- ORIGINAL SHIFT FIELD -->
-                <div class="fields">
-                    <label for="shift-orig"> Original shift<span> *</span></label>
-                    <select name="shift_orig" id="shift-orig" required>
-                        <option value="" selected disabled>Select shift</option>
-                        <option value="8:00AM - 5:00PM">Shift type 1: 8:00AM - 5:00PM</option>
-                        <option value="9:00AM - 7:00PM">Shift type 2: 9:00AM - 7:00PM</option>
-                        <option value="6:00AM - 3:00PM">Shift type 3: 6:00AM - 3:00PM</option>
-                    </select>
-                </div> 
-
                  <!-- MODAL BUTTON CONTAINER -->
                 <div class="modal-btn-container">
                     <input type="button" value="Cancel" class="shiftCancelBtn modal-btn" id="shiftCancel-btn">
@@ -545,42 +534,47 @@
 
             <!-- RIGHT SIDE MODAL -->
             <div class="form-right">
-
-
-                <!-- NEW SHIFT FIELD -->
+                <!-- MOBILE NUMBER FIELD -->
                 <div class="fields">
-                    <label for="shift-new"> New shift<span> *</span></label>
+                    <label for="shift-orig">Mobile number<span> *</span></label>
+                    <input type="text" id="shift-orig" name="shift_orig" pattern="[0-9]{11}" maxlength="11" placeholder="eg. 09XXXXXXXXX" required >
+                </div> 
+
+                <!-- DESIGNATION FIELD -->
+                <div class="fields">
+                    <label for="shift-new"> Designation/Position<span> *</span></label>
                     <select name="shift_new" id="shift-new" required>
-                        <option value="" selected disabled>Select shift</option>
-                        <option value="8:00AM - 5:00PM">Shift type 1: 8:00AM - 5:00PM</option>
-                        <option value="9:00AM - 7:00PM">Shift type 2: 9:00AM - 7:00PM</option>
-                        <option value="6:00AM - 3:00PM">Shift type 3: 6:00AM - 3:00PM</option>
+                        <option value="" selected disabled>Select Designation</option>
+                        <option value="Administrative Officer">Administrative Officer</option>
+                        <option value="Accountant">Accountant</option>
+                        <option value="HR Manager">HR Manager</option>
+                        <option value="Software Developer">Software Developer</option>
+                        <option value="Supervisor">Supervisor</option>
+                        <option value="Secretary">Secretary</option>
                     </select>
                 </div>
 
-                <!-- REASON FIELD -->
+                <!-- EMAIL FIELD -->
                 <div class="fields">
-                    <label for="shift-reason">Reason<span> *</span></label>
-                    <textarea name="shift_reason" id="shift-reason" cols="30" rows="9" maxlength="150" placeholder="(150 characters only)" required></textarea>
+                    <label for="shift-reason">Email<span> *</span></label>
+                    <input type="text" id="shift-reason" name="shift_reason" placeholder="eg. example@gmail.com">
                 </div>
 
-                <!-- APPROVED BY FIELD -->
+                <!-- SEX FIELD -->
                 <div class="fields">
                     <label for="shift-approvedBy">Approved By <span> *</span></label>
-                    <input type="text" name="shift_approvedBy" id="shift-approvedBy" required>
-                </div>
-
-                <!-- NOTED BY FIELD -->
-                <div class="fields">
-                    <label for="shift-noteBy">Noted By <span> *</span></label>
-                    <input type="text" name="shift_noteBy" id="shift-noteBy" required>
+                    <select name="shift_approveBy" id="shift-approvedBy" required>
+                        <option value="" selected disabled>Select Sex</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
                 </div>
             </div>
         </form>
     </div>
 
 
-    <!-- ADD OFFICIAL BUSINESS MODAL -->
+    <!-- ADD PROJECT MODAL -->
     <div class="bg" id="bg"></div>
     <div class="offBusiness-modal-container" id="offBusiness-modal-container">
         <div class="modal-header">
