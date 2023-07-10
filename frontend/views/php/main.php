@@ -169,10 +169,10 @@
                     <th class="name">Name</th>
                     <th>Company</th>
                     <th>Department</th>
-                    <th>Orig Time</th>
-                    <th>New Time</th>
-                    <th>Approved By</th>
-                    <th>Date Effective</th>
+                    <th>Position</th>
+                    <th class="contact">Contact No.</th>
+                    <th class="sex">Sex</th>
+                    <th>Date Created</th>
                     <th class="actions">Action</th>
                 </tr>
 
@@ -234,8 +234,8 @@
                                 <td class="company"><abbr title="' . $company . '">' . $company . '</abbr></td>
                                 <td><abbr title="' . $department . '">' . $department . '</abbr></td>
                                 <td> ' . $origin . '</td>
-                                <td> ' . $new .  '</td>
-                                <td><abbr title="' . $approved . '">' . $approved . '</abbr></td>
+                                <td class="contact"> ' . $new .  '</td>
+                                <td class="sex"><abbr title="' . $approved . '">' . $approved . '</abbr></td>
                                 <td> ' . $effectiveDate . '</td>     
                                 <td class="actions">
                                     <a href="?deleteshift=' . $shiftid . '"><i class="act-icon fa-solid fa-trash-can"></i></a>

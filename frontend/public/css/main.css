@@ -207,6 +207,10 @@ td,th{
     min-width: 70px;
     max-width: 70px;
 }
+.sex{
+    min-width: 60px;
+    max-width: 60px;
+}
 .actions{
     min-width: 60px;
     max-width: 60px;
