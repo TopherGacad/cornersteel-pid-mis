@@ -48,7 +48,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Edit Change Shift Request</title>
+        <title>Edit Employee Details</title>
 
         <!-- STYLESHEET -->
         <link rel="stylesheet" href="../../public/css/editpage.css">
@@ -68,7 +68,7 @@
             <div class="content-container">
                 <form action="../../../backend/includes/csedit_inc.php" method="post" id="csEdit-form">
                     <div class="ot-header">
-                        <h3><a href="../../views/php/main.php"><i class="fa-solid fa-arrow-left"></i></a>Edit Change Shift Request</h3>
+                        <h3><a href="../../views/php/main.php"><i class="fa-solid fa-arrow-left"></i></a>Edit</h3>
                         <div class="btn-container">
                             <a href="../../views/php/main.php"><input type="button" value="Discard" class="cancelBtn modal-btn" id="cancel-btn"></a>
                             <button class="update-btn modal-btn" id="otEdit-update" type="submit" name="shift-update">Update</button>
@@ -78,7 +78,7 @@
                     <input type="hidden" name="id" value="<?php echo $shiftid;?>">
 
                     <div class="employee-container">
-                        <h3>Employee Details</h3>
+                        <h3>Company Details</h3>
                         <div class="emp-layout main">
                             <div class="left-side-emp section">
                                 <!-- COMPANY FIELD -->
@@ -104,90 +104,85 @@
                                         <option value="HR" <?php if($department == "HR") echo "selected";?>>Human Resources</option>
                                     </select>
                                 </div>
-
-                                <!-- FIRSTNAME FIELD -->
-                                <div class="fields">
-                                    <label class="dis-input" for="shift-firstname">Firstname <span> *</span></label>
-                                    <input class="dis-input" type="text" name="shift_firstname" id="shift-firstname" value="<?php echo $firstname; ?>" required>
-                                </div>
                             </div>
 
                             <div class="right-side-emp section">
-                                
-                                <!-- MIDDLE NAME -->
+                                <!-- DESIGNATION FIELD -->
                                 <div class="fields">
-                                    <label class="dis-input" for="shift-midname">Middlename</label>
-                                    <input class="dis-input" type="text" name="shift_midname" id="shift-midname" value="<?php echo $middlename; ?>">
-                                </div>
-
-                                <!-- LASTNAME FIELD -->
-                                <div class="fields">
-                                    <label class="dis-input" for="shift-lastname">Lastname <span> *</span></label>
-                                    <input class="dis-input" type="text" name="shift_lastname" id="shift-lastname" value="<?php echo $lastname; ?>" required>
+                                    <label for="shift-new"> Designation/Position<span> *</span></label>
+                                    <select name="shift_new" id="shift-new" required>
+                                        <option value="" selected disabled>Select Designation</option>
+                                        <option value="Administrative Officer">Administrative Officer</option>
+                                        <option value="Accountant">Accountant</option>
+                                        <option value="HR Manager">HR Manager</option>
+                                        <option value="Software Developer">Software Developer</option>
+                                        <option value="Supervisor">Supervisor</option>
+                                        <option value="Secretary">Secretary</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="time-container">
-                    <h3>Shift Details</h3>
+                    <h3>Employee Details</h3>
                         <div class="time-layout main">
                             <div class="left-side-time section">
-                                <!-- ORIGINAL SHIFT FIELD -->
+                                <!-- FIRSTNAME FIELD -->
                                 <div class="fields">
-                                    <label class="dis-input" for="shift-orig"> Original shift<span> *</span></label>
-                                    <select class="dis-input" name="shift_orig" id="shift-orig" required>
-                                        <option value="" selected disabled>Select shift</option>
-                                        <option value="8:00AM - 5:00PM" <?php if($origin === "8:00AM - 5:00PM") echo "selected";?>>Shift type 1: 8:00AM - 5:00PM</option>
-                                        <option value="9:00AM - 7:00PM" <?php if($origin === "9:00AM - 7:00PM") echo "selected";?>>Shift type 2: 9:00AM - 7:00PM</option>
-                                        <option value="6:00AM - 3:00PM" <?php if($origin === "6:00AM - 3:00PM") echo "selected";?>>Shift type 3: 6:00AM - 3:00PM</option>
-                                    </select>
-                                </div> 
-
-                                <!-- NEW SHIFT FIELD -->
-                                <div class="fields">
-                                    <label class="dis-input" for="shift-new"> New shift<span> *</span></label>
-                                    <select class="dis-input" name="shift_new" id="shift-new" required>
-                                        <option value="" selected disabled>Select shift</option>
-                                        <option value="8:00AM - 5:00PM" <?php if($new === "8:00AM - 5:00PM") echo "selected";?>>Shift type 1: 8:00AM - 5:00PM</option>
-                                        <option value="9:00AM - 7:00PM" <?php if($new === "9:00AM - 7:00PM") echo "selected";?>>Shift type 2: 9:00AM - 7:00PM</option>
-                                        <option value="6:00AM - 3:00PM" <?php if($new === "6:00AM - 3:00PM") echo "selected";?>>Shift type 3: 6:00AM - 3:00PM</option>
-                                    </select>
+                                    <label class="dis-input" for="shift-firstname">Firstname <span> *</span></label>
+                                    <input class="dis-input" type="text" name="shift_firstname" id="shift-firstname" value="<?php echo $firstname; ?>" required>
                                 </div>
 
-                                <!-- DATE EFFECTIVE -->
-                                <div class="fields">
-                                    <label class="dis-input" for="shift-date">Date Effective <span> *</span></label>
-                                    <input class="dis-input" type="date" id="shift-date" name="shift_date" value="<?php echo $formatdate; ?>" required>
+                               <!-- MIDDLE NAME -->
+                               <div class="fields">
+                                    <label class="dis-input" for="shift-midname">Middlename</label>
+                                    <input class="dis-input" type="text" name="shift_midname" id="shift-midname" value="<?php echo $middlename; ?>">
+                                </div>
+
+                                 <!-- LASTNAME FIELD -->
+                                 <div class="fields">
+                                    <label class="dis-input" for="shift-lastname">Lastname <span> *</span></label>
+                                    <input class="dis-input" type="text" name="shift_lastname" id="shift-lastname" value="<?php echo $lastname; ?>" required>
                                 </div>
                             </div>
                             
                             <div class="right-side-time section">
-                            <!-- REASON FIELD -->
+                                <!-- AGE FIELD -->
                                 <div class="fields">
-                                    <label class="dis-input" for="shift-reason">Reason<span> *</span></label>
-                                    <textarea class="dis-input" name="shift_reason" id="shift-reason" cols="30" rows="9" maxlength="150" placeholder="(150 characters only)" required><?php echo $reason; ?></textarea>
+                                    <label for="shift-date">Age<span> *</span></label>
+                                    <input type="text" id="shift-date" name="shift_date" pattern="[1-9]*" minlength="1" maxlength="3" required>
+                                </div>
+
+                                <!-- SEX FIELD -->
+                                <div class="fields">
+                                    <label for="shift-approvedBy">Sex<span> *</span></label>
+                                    <select name="shift_approveBy" id="shift-approvedBy" required>
+                                        <option value="" selected disabled>Select Sex</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="approval-container">
-                        <h3>Approval Details</h3>
+                        <h3>Contact Details</h3>
                         <div class="main">
                             <div class="left-side-approve section">
-                                <!-- APPROVED BY FIELD -->
+                                <!-- MOBILE NUMBER FIELD -->
                                 <div class="fields">
-                                    <label class="dis-input" for="shift-approvedBy">Approved By <span> *</span></label>
-                                    <input class="dis-input" type="text" name="shift_approvedBy" id="shift-approvedBy"  value="<?php echo $approved; ?>" required>
-                                </div>
+                                    <label for="shift-orig">Mobile number<span> *</span></label>
+                                    <input type="text" id="shift-orig" name="shift_orig" pattern="[0-9]{11}" maxlength="11" placeholder="eg. 09XXXXXXXXX" required >
+                                </div> 
                             </div>
 
                             <div class="right-side-approve section">
-                                <!-- NOTED BY FIELD -->
+                                <!-- EMAIL FIELD -->
                                 <div class="fields">
-                                    <label class="dis-input" for="shift-noteBy">Noted By <span> *</span></label>
-                                    <input class="dis-input" type="text" name="shift_noteBy" id="shift-noteBy" value="<?php echo $noted; ?>" required>
+                                    <label for="shift-reason">Email<span> *</span></label>
+                                    <input type="text" id="shift-reason" name="shift_reason" placeholder="eg. example@gmail.com">
                                 </div>
                             </div>
                         </div>
