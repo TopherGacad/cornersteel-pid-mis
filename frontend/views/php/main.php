@@ -182,24 +182,30 @@
     <div class="offBusiness-container" id="offBusiness-container">
         <div class="content-header">
             <input type="text" class="offBusiness-search" id="offBusiness-search" placeholder="Type here to search">
-            <button class="addOffBusiness-btn" id="addOffBusiness-btn"><i class="fa-solid fa-plus"></i>Official Business</button>
+            <button class="addOffBusiness-btn" id="addOffBusiness-btn"><i class="fa-solid fa-plus"></i>Add Project</button>
         </div>
         <div class="content-container">
             <table>
                 <tr>
-                    <th class="name">Name</th>
-                    <th>Company</th>
-                    <th>Department</th>
-                    <th>Status</th>
-                    <th>Authorize Client</th>
-                    <th>Noted By</th>
-                    <th>Date</th>
+                    <th class="name">Project</th>
+                    <th class="client">Client</th>
+                    <th class="min">Sales Order (SO)</th>
+                    <th class="min">Job Order (JO)</th>
+                    <th>Location</th>
+                    <th>Date Created</th>
                     <th class="actions">Action</th>
                 </tr>
 
                 <tbody id="offBusiness-table-body">
-
     
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
                 </tbody>
             </table>
         </div>
@@ -421,7 +427,7 @@
 
                 <!-- SEX FIELD -->
                 <div class="fields">
-                    <label for="shift-approvedBy">Approved By <span> *</span></label>
+                    <label for="shift-approvedBy">Sex<span> *</span></label>
                     <select name="employ_sex" id="shift-approvedBy" required>
                         <option value="" selected disabled>Select Sex</option>
                         <option value="Male">Male</option>
@@ -437,104 +443,48 @@
     <div class="bg" id="bg"></div>
     <div class="offBusiness-modal-container" id="offBusiness-modal-container">
         <div class="modal-header">
-            <h4>ADD OFFICIAL BUSINESS</h4>
+            <h4>ADD PROJECT DETAILS</h4>
         </div>
         <form action="../../../backend/includes/offbusiness_inc.php" method="post" id="offBusiness-form">
 
             <!-- LEFT SIDE MODAL -->
             <div class="form-left">
-                <!-- COMPANY FIELD -->
+                <!-- PROJECT FIELD -->
                 <div class="fields">
-                    <label for="ob-company">Company <span> *</span></label>
-                    <select name="ob_company" id="ob-company" required autofocus>
-                        <option value="" selected disabled>Select company</option>
-                        <option value="Comfac">Comfac Corporation</option>
-                        <option value="CSC">Cornersteel Systems Corporation</option>
-                        <option value="ESCO">ESCO</option>
-                    </select>
+                    <label for="proj-name">Project <span> *</span></label>
+                    <input type="text" id="proj-name" name="proj_name" required>
                 </div>
 
-                <!-- DEPARTMENT FIELD -->
+                <!-- CLIENT FIELD -->
                 <div class="fields">
-                    <label for="ob-department">Department <span> *</span></label>
-                    <select name="ob_department" id="ob-department" required>
-                        <option value="" selected disabled>Select company</option>
-                        <option value="Accounting">Accounts</option>
-                        <option value="Sales">Sales</option>
-                        <option value="Legal">Legal</option>
-                        <option value="PID">Project Installation Dep</option>
-                        <option value="HR">Human Resources</option>
-                    </select>
+                    <label for="proj-client">Client <span> *</span></label>
+                    <input type="text" id="proj-client" name="proj_client" required>
                 </div>
-
-                <!-- NAME FIELDS -->
+                
                 <div class="field-container">
+                    <!-- SALES ORDER FIELD -->
                     <div class="fields">
-                        <label for="ob-firstname">Firstname <span> *</span></label>
-                        <input type="text" name="ob_firstname" id="ob-firstname" placeholder="Juan" required>
+                        <label for="proj-so">Sales Order(SO) <span> *</span></label>
+                        <input type="text" id="proj-so" name="proj_so" required>
                     </div>
-    
+                    <!-- JOB ORDER FIELD -->
                     <div class="fields">
-                        <label for="ob-midname">Middlename</label>
-                        <input type="text" name="ob_midname" id="ob-midname" placeholder="Reyes">
+                        <label for="proj-jo">Job Order(JO) <span> *</span></label>
+                        <input type="text" name="proj_jo" id="proj-jo" required>
                     </div>
                 </div>
-
-                <!-- LASTNAME FIELD -->
+        
+                <!-- LOCATION FIELD -->
                 <div class="fields">
-                    <label for="ob-lastname">Lastname <span> *</span></label>
-                    <input type="text" name="ob_lastname" id="ob-lastname" placeholder="Dela Cruz" required>
-                </div>
-
-                <!-- AUTHORIZE CLIENT FIELD -->
-                <div class="fields">
-                    <label for="ob-client">Authorize Client <span> *</span></label>
-                    <input type="text" name="ob_client" id="ob-client" required>
-                </div>
-
-
+                    <label for="proj-loc">Location<span> *</span></label>
+                    <input type="text" name="proj_loc" id="proj-loc" required>
+                </div> 
                  <!-- MODAL BUTTON CONTAINER -->
                 <div class="modal-btn-container">
                     <input type="button" value="Cancel" class="offBusCancelBtn modal-btn" id="offBusCancel-btn">
                     <button class="save-btn modal-btn" id="save-btn" type="submit" name="offbusiness-save">Save</button>
                 </div>
-            </div>
-
-            <!-- RIGHT SIDE MODAL -->
-            <div class="form-right">
-                
-                <div class="field-container">
-                    <!-- STATUS FIELD -->
-                    <div class="fields">
-                        <label for="ob-status">Status <span> *</span></label>
-                        <select name="ob_status" id="ob-status" required>
-                            <option value="" selected disabled>Select status</option>
-                            <option value="No Login">No Login</option>
-                            <option value="No Logout">No Logout</option>
-                            <option value="Both">Both</option>
-                        </select>
-                    </div>
-                    <!-- DATE FIELD -->
-                    <div class="fields">
-                        <label for="ob-date">Date <span> *</span></label>
-                        <input type="date" name="ob_date" id="ob-date" required>
-                    </div>
-                </div>
-                 
-                <!-- REASON FIELD -->
-                <div class="fields">
-                    <label for="ob-reason">Reason<span> *</span></label>
-                    <textarea name="ob_reason" id="ob-reason" cols="30" rows="9" maxlength="150"></textarea>
-                </div>
-
-                <!-- NOTED BY FIELD -->
-                <div class="fields">
-
-                    <label for="ob-noteBy">Noted By <span> *</span></label>
-                    <input type="text" name="ob_noteBy" id="ob-noteBy" required>
-
-                </div>
-            </div>
+            </div>    
         </form>
     </div>
     

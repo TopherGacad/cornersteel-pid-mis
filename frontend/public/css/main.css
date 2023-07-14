@@ -199,11 +199,11 @@ td,th{
     min-width: 60px;
     max-width: 60px;
 }
-.name{
+.name,.client{
     min-width: 120px;
     max-width: 120px;
 }
-.company{
+.company,.min{
     min-width: 70px;
     max-width: 70px;
 }
@@ -277,6 +277,10 @@ tbody tr:hover{
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
 }
+.offBusiness-modal-container{
+    width: 30%;
+    height: fit-content;
+}
 .modal-header{
     padding: 0px 10px;
     border-bottom: 1px solid var(--border-color);
@@ -318,6 +322,9 @@ textarea{
 }
 .form-left, .form-right{
     width: 45%;
+}
+.offBusiness-modal-container .form-left{
+    width: 100%;
 }
 .modal-btn-container{
     padding: 5px 10px;
