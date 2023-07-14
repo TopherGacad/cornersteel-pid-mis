@@ -175,8 +175,12 @@
                             echo '
                             <tr>
                                 <td class="name"><abbr title="' . $firstname . ' ' . $lastname . '">' . $firstname . ' ' . $lastname . '</abbr></td>
-                                <td class="status"><abbr title="' . $company . '">' . $company . '</abbr></td>
-                                <td> ' . $company . '</td>
+                                <td class="company"><abbr title="' . $company . '">' . $company . '</abbr></td>
+                                <td class="status">
+                                    <div class="stat-container">
+                                        <p>Available</p>
+                                    </div>
+                                </td>
                                 <td> ' . $position . '</td>
                                 <td class="contact"> ' . $phone .  '</td>
                                 <td class="sex"><abbr title="' . $sex . '">' . $sex . '</abbr></td>
