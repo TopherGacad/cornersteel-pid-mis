@@ -207,6 +207,27 @@ td,th{
     min-width: 70px;
     max-width: 70px;
 }
+.status{
+    min-width: 90px;
+    max-width: 90px;
+}
+.stat-container{
+    border-radius: 15px;
+    background-color: var(--btn-save);
+    color: var(--def-white);
+}
+
+/* THIS IS FOR STATUS STYLING */
+/* .Available{
+    border-radius: 15px;
+    background-color: var(--btn-save);
+    color: var(--def-white);
+}
+.Booked{
+    border-radius: 15px;
+    background-color: var(--dis-field);
+    color: var(--def-white);
+} */
 .sex{
     min-width: 60px;
     max-width: 60px;

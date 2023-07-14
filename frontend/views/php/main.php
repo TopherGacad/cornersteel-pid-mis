@@ -168,7 +168,7 @@
                 <tr>
                     <th class="name">Name</th>
                     <th>Company</th>
-                    <th>Department</th>
+                    <th class="status">Status</th>
                     <th>Position</th>
                     <th class="contact">Contact No.</th>
                     <th class="sex">Sex</th>
@@ -177,7 +177,24 @@
                 </tr>
 
                 <tbody id="shift-table-body">
-
+                <tr>
+                    <td class="name">Christopher Gacad</td>
+                    <td>CSC</td>
+                    <td class="status">
+                        <div class="stat-container">
+                            <p>Available</p>
+                        </div>
+                    </td>
+                    <td>Worker</td>
+                    <td class="contact">09938574857</td>
+                    <td class="sex">Male</td>
+                    <td>07/14/2023</td>
+                    <td class="actions">
+                        <a href="#"><i class="act-icon fa-solid fa-trash-can"></i></a>
+                        <a href="../../views/php/changeshift.php"><i class="act-icon fa-solid fa-pen-to-square"></i></a>
+                    </td>
+                </tr>
+                
                 <?php 
                     include_once '../../../backend/includes/dbconn_inc.php';         
 
@@ -231,7 +248,7 @@
                             echo '
                             <tr>
                                 <td class="name"><abbr title="' . $firstname . ' ' . $lastname . '">' . $firstname . ' ' . $lastname . '</abbr></td>
-                                <td class="company"><abbr title="' . $company . '">' . $company . '</abbr></td>
+                                <td class="status"><abbr title="' . $company . '">' . $company . '</abbr></td>
                                 <td><abbr title="' . $department . '">' . $department . '</abbr></td>
                                 <td> ' . $origin . '</td>
                                 <td class="contact"> ' . $new .  '</td>
