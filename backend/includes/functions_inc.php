@@ -260,28 +260,24 @@
         //----------------------------------------------------------------//
         //-------------------FUNCTION FOR CHANGE SHIFT--------------------//
 
-        function ChangeShift($conn, $company, $department, $firstname, $middlename, $lastname, $origin, $new,
-        $reason, $approved, $noted, $date){
-
-            //--- FORMATS THE DATE AND ASSIGNED IT TO A VARIABLE ---//
-            $effectiveDate = date('Y-m-d', strtotime($date)); 
+        function AddEmployee($conn, $company, $department, $firstname, $middlename, $lastname, $age, $phone, $position, $email, $sex){
 
             //--- INSERT QUERY ---//
-            $sql = "INSERT INTO changeshift_csc (cs_company, cs_dept, cs_firstname, cs_middlename, cs_lastname, cs_shiftorigin, cs_shiftnew,
-            cs_reason, cs_approved, cs_noted, cs_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            $sql = "INSERT INTO employee_pid (emp_firstname, emp_middlename, emp_lastname, emp_position, emp_dept, emp_company, 
+            emp_mobile, emp_email, emp_gender, emp_age) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             $stmt = mysqli_stmt_init($conn);
 
             //--- CHECKS IF THE VARIABLES '$sql' AND '$stmt' IF PREPARE STATEMENT IS SUCCESSFULL ---//
             if(!mysqli_stmt_prepare($stmt, $sql)){
 
                 //--- TAKES USER BACK TO THE MAIN PAGE 'main.php' WHENEVER PREPARE STATEMENT FAILS ---//
-                header("Location: ../../frontend/views/php/main.php?error=csstatementfailed");
+                header("Location: ../../frontend/views/php/main.php?error=empstatementfailed");
                 exit();
             }
 
             //--- BINDS THE VARIABLE TO BE INSERTED USING BIND PARAMETER STATEMENT ---//
-            mysqli_stmt_bind_param($stmt, "sssssssssss", $company, $department, $firstname, $middlename, $lastname, $origin, 
-            $new, $reason, $approved, $noted, $effectiveDate);
+            mysqli_stmt_bind_param($stmt, "ssssssissi", $firstname, $middlename, $lastname, $position, $department, $company, 
+            $phone, $email, $sex, $age);
 
             //--- EXECUTE STATEMENT ---//
             mysqli_stmt_execute($stmt);
@@ -290,7 +286,7 @@
             mysqli_stmt_close($stmt);
 
             //--- TAKES USER BACK TO THE MAIN PAGE 'main.php' WHEN FILING CHANGESHIFT IS SUCCESSFULL ---//
-            header("Location: ../../frontend/views/php/main.php?CSinsert=successful");
+            header("Location: ../../frontend/views/php/main.php?Empinsert=successful");
 
         }
 

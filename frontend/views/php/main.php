@@ -1,12 +1,12 @@
 <?php
-    //--- STARTS SESSION ---//
-    session_start();
+    // //--- STARTS SESSION ---//
+    // session_start();
 
-    //--- REQUIRES USER TO LOGIN IN ORDER TO PROCEED ---//
-    if(!isset($_SESSION['user-id'])){
-        header("Location: ../../../frontend/views/php/login.php");
-        exit();
-    }
+    // //--- REQUIRES USER TO LOGIN IN ORDER TO PROCEED ---//
+    // if(!isset($_SESSION['user-id'])){
+    //     header("Location: ../../../frontend/views/php/login.php");
+    //     exit();
+    // }
 
 ?>
 
@@ -78,79 +78,7 @@
 
                 <tbody id="overtime-table-body">
 
-                    <?php
-                        ob_start();
 
-                        include_once '../../../backend/includes/dbconn_inc.php';
-
-                        if(isset($_GET['deleteovertime'])){
-                            $overtimeid = $_GET['deleteovertime'];
-                            
-                            $delsql = "DELETE FROM overtime_csc WHERE ot_id = ?;";
-                            $delstmt = mysqli_stmt_init($conn);
-
-                            if(!mysqli_stmt_prepare($delstmt, $delsql)){
-                                echo 'deletion failed';
-                            }
-                            else{
-                                mysqli_stmt_bind_param($delstmt, 'i', $overtimeid);
-                                mysqli_stmt_execute($delstmt);
-
-                                if(mysqli_stmt_affected_rows($delstmt) > 0){
-                                    header('Location: main.php?deletion=successful');
-                                }
-                                else{
-                                    header('Location: main.php?deletion=failed');
-                                }
-                            }
-
-                            mysqli_stmt_close($delstmt);
-                        }
-
-                        $sql = "SELECT * FROM overtime_csc ORDER BY ot_datecreate DESC;";
-                        $stmt = mysqli_stmt_init($conn);
-
-                        if(!mysqli_stmt_prepare($stmt, $sql)){
-                            echo 'SQL statement failed';
-                        }
-                        else{
-                            mysqli_stmt_execute($stmt);
-                            $result = mysqli_stmt_get_result($stmt);
-
-                            while($row = mysqli_fetch_assoc($result)){
-                                
-                                $overtimeid = $row['ot_id'];
-                                $company = $row['ot_company'];
-                                $department = $row['ot_dept'];
-                                $firstname = $row['ot_firstname'];
-                                $lastname = $row['ot_lastname'];
-                                $position = $row['ot_position'];
-                                $timefrom = $row['ot_from'];
-                                $timeto = $row['ot_to'];
-                                $overtime = $row['ot_hours'];
-
-                                $filedate = $row['ot_datecreate'];
-
-                                $date = date('m/d/Y', strtotime($filedate));
-
-                                echo ' 
-                                <tr>
-                                    <td class="name"><abbr title="' . $firstname . ' ' . $lastname . '">' . $firstname . ' ' . $lastname . '</abbr></td>
-                                    <td class="company"><abbr title="' . $company . '">' . $company . '</abbr></td>
-                                    <td><abbr title="' . $department . '"> ' . $department . '</abbr></td>
-                                    <td><abbr title="' . $position . '">' . $position . '</abbr></td>
-                                    <td> ' . $timefrom .  '</td>
-                                    <td> ' . $timeto . '</td>
-                                    <td class="thours">' . $overtime . '</td>
-                                    <td> ' . $date . '</td>     
-                                    <td class="actions">
-                                        <a href="?deleteovertime=' . $overtimeid . '"><i class="act-icon fa-solid fa-trash-can"></i></a>
-                                        <a href="../../views/php/overtime.php?id=' . $overtimeid . '"><i class="act-icon fa-solid fa-pen-to-square"></i></a>
-                                    </td>
-                                </tr>';
-                            }
-                        }
-                    ?>
 
                 </tbody>
             </table>
@@ -181,10 +109,10 @@
                 <?php 
                     include_once '../../../backend/includes/dbconn_inc.php';         
 
-                    if(isset($_GET['deleteshift'])){
-                        $shiftid = $_GET['deleteshift'];
+                    if(isset($_GET['deleteemp'])){
+                        $shiftid = $_GET['deleteemp'];
                         
-                        $delsql = "DELETE FROM changeshift_csc WHERE cs_id = ?;";
+                        $delsql = "DELETE FROM employee_pid WHERE emp_id = ?;";
                         $delstmt = mysqli_stmt_init($conn);
 
                         if(!mysqli_stmt_prepare($delstmt, $delsql)){
@@ -205,7 +133,7 @@
                         mysqli_stmt_close($delstmt);
                     }
 
-                    $sql = "SELECT * FROM changeshift_csc ORDER BY cs_datecreate DESC;";
+                    $sql = "SELECT * FROM employee_pid ORDER BY emp_datecreated DESC;";
                     $stmt = mysqli_stmt_init($conn);
 
                     if(!mysqli_stmt_prepare($stmt, $sql)){
@@ -216,30 +144,29 @@
                         $result = mysqli_stmt_get_result($stmt);
 
                         while($row = mysqli_fetch_assoc($result)){
-                            $shiftid = $row['cs_id'];
-                            $firstname = $row['cs_firstname'];
-                            $lastname = $row['cs_lastname'];
-                            $company = $row['cs_company'];
-                            $department = $row['cs_dept'];
-                            $origin = $row['cs_shiftorigin'];
-                            $new = $row['cs_shiftnew'];
-                            $approved = $row['cs_approved'];
-                            $date = $row['cs_date'];
+                            $empid = $row['emp_id'];
+                            $firstname = $row['emp_firstname'];
+                            $lastname = $row['emp_lastname'];
+                            $company = $row['emp_company'];
+                            $position = $row['emp_position'];
+                            $phone = $row['emp_mobile'];
+                            $sex = $row['emp_gender'];
+                            $date = $row['emp_datecreated'];
 
-                            $effectiveDate = date('m/d/Y', strtotime($date));
+                            $creationdate = date('m/d/Y', strtotime($date));
 
                             echo '
                             <tr>
                                 <td class="name"><abbr title="' . $firstname . ' ' . $lastname . '">' . $firstname . ' ' . $lastname . '</abbr></td>
                                 <td class="company"><abbr title="' . $company . '">' . $company . '</abbr></td>
-                                <td><abbr title="' . $department . '">' . $department . '</abbr></td>
-                                <td> ' . $origin . '</td>
-                                <td class="contact"> ' . $new .  '</td>
-                                <td class="sex"><abbr title="' . $approved . '">' . $approved . '</abbr></td>
-                                <td> ' . $effectiveDate . '</td>     
+                                <td> ' . $company . '</td>
+                                <td> ' . $position . '</td>
+                                <td class="contact"> ' . $phone .  '</td>
+                                <td class="sex"><abbr title="' . $sex . '">' . $sex . '</abbr></td>
+                                <td> ' . $creationdate . '</td>     
                                 <td class="actions">
-                                    <a href="?deleteshift=' . $shiftid . '"><i class="act-icon fa-solid fa-trash-can"></i></a>
-                                    <a href="../../views/php/changeshift.php?id=' . $shiftid . '"><i class="act-icon fa-solid fa-pen-to-square"></i></a>
+                                    <a href="?deleteemployee=' . $empid . '"><i class="act-icon fa-solid fa-trash-can"></i></a>
+                                    <a href="../../views/php/editemployee.php?id=' . $empid . '"><i class="act-icon fa-solid fa-pen-to-square"></i></a>
                                 </td>
                             </tr>';
                         }
@@ -270,75 +197,15 @@
                 </tr>
 
                 <tbody id="offBusiness-table-body">
-
-                    
-                <?php 
-                    include_once '../../../backend/includes/dbconn_inc.php';         
-
-                    if(isset($_GET['deleteoffbusiness'])){
-                        $offbusinessid = $_GET['deleteoffbusiness'];
-                        
-                        $delsql = "DELETE FROM officialbusiness_csc WHERE ob_id = ?;";
-                        $delstmt = mysqli_stmt_init($conn);
-
-                        if(!mysqli_stmt_prepare($delstmt, $delsql)){
-                            echo 'deletion failed';
-                        }
-                        else{
-                            mysqli_stmt_bind_param($delstmt, 'i', $offbusinessid);
-                            mysqli_stmt_execute($delstmt);
-
-                            if(mysqli_stmt_affected_rows($delstmt) > 0){
-                                header('Location: main.php?deletion=successful');
-                            }
-                            else{
-                                header('Location: main.php?deletion=failed');
-                            }
-                        }
-
-                        mysqli_stmt_close($delstmt);
-                    }
-
-                    $sql = "SELECT * FROM officialbusiness_csc ORDER BY ob_datecreate DESC;";
-                    $stmt = mysqli_stmt_init($conn);
-
-                    if(!mysqli_stmt_prepare($stmt, $sql)){
-                        echo 'SQL statement failed';
-                    }
-                    else{
-                        mysqli_stmt_execute($stmt);
-                        $result = mysqli_stmt_get_result($stmt);
-
-                        while($row = mysqli_fetch_assoc($result)){
-                            $offbusinessid = $row['ob_id'];
-                            $firstname = $row['ob_firstname'];
-                            $lastname = $row['ob_lastname'];
-                            $company = $row['ob_company'];
-                            $department = $row['ob_dept'];
-                            $status = $row['ob_status'];
-                            $client = $row['ob_client'];
-                            $noted = $row['ob_noted'];
-                            $date = $row['ob_date'];
-
-                            $effectiveDate = date('m/d/Y', strtotime($date));
-
-                            echo '
-                            <tr>
-                                <td class="name"><abbr title="' . $firstname . ' ' . $lastname . '">' . $firstname . ' ' . $lastname . '</abbr></td>
-                                <td class="client"><abbr title="' . $company . '">' . $company . '</abbr></td>
-                                <td class="min"> ' . $status . '</td>
-                                <td class="min"> ' . $client .  '</td>
-                                <td> ' . $noted . '</td>
-                                <td> ' . $effectiveDate . '</td>     
-                                <td class="actions">
-                                    <a href="?deleteoffbusiness=' . $offbusinessid . '"><i class="act-icon fa-solid fa-trash-can"></i></a>
-                                    <a href="../../views/php/officialBusiness.php?id=' . $offbusinessid . '"><i class="act-icon fa-solid fa-pen-to-square"></i></a>
-                                </td>
-                            </tr>';
-                        }
-                    }
-                ?>
     
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
                 </tbody>
             </table>
         </div>
@@ -468,14 +335,14 @@
         <div class="modal-header">
             <h4>ADD EMPLOYEES</h4>
         </div>
-        <form action="../../../backend/includes/changeshift_inc.php" method="post" id="shift-form">
+        <form action="../../../backend/includes/emp_inc.php" method="post" id="shift-form">
 
             <!-- LEFT SIDE MODAL -->
             <div class="form-left">
                 <!-- COMPANY FIELD -->
                 <div class="fields">
                     <label for="shift-company">Company <span> *</span></label>
-                    <select name="shift_company" id="shift-company" required autofocus>
+                    <select name="employ_company" id="shift-company" required autofocus>
                         <option value="" selected disabled>Select company</option>
                         <option value="Comfac">Comfac Corporation</option>
                         <option value="CSC">Cornersteel Systems Corporation</option>
@@ -486,7 +353,7 @@
                 <!-- DEPARTMENT FIELD -->
                 <div class="fields">
                     <label for="shift-department">Department <span> *</span></label>
-                    <select name="shift_department" id="shift-department" required>
+                    <select name="employ_department" id="shift-department" required>
                         <option value="" selected disabled>Select company</option>
                         <option value="Accounts">Accounts</option>
                         <option value="Sales">Sales</option>
@@ -500,12 +367,12 @@
                 <div class="field-container">
                     <div class="fields">
                         <label for="shift-firstname">Firstname <span> *</span></label>
-                        <input type="text" name="shift_firstname" id="shift-firstname" placeholder="Juan" required>
+                        <input type="text" name="employ_firstname" id="shift-firstname" placeholder="Juan" required>
                     </div>
     
                     <div class="fields">
                         <label for="shift-midname">Middlename</label>
-                        <input type="text" name="shift_midname" id="shift-midname" placeholder="Reyes">
+                        <input type="text" name="employ_midname" id="shift-midname" placeholder="Reyes">
                     </div>
                 </div>
                 
@@ -513,20 +380,20 @@
                     <!-- LASTNAME FIELD -->
                     <div class="fields">
                         <label for="shift-lastname">Lastname <span> *</span></label>
-                        <input type="text" name="shift_lastname" id="shift-lastname" placeholder="Dela Cruz" required>
+                        <input type="text" name="employ_lastname" id="shift-lastname" placeholder="Dela Cruz" required>
                     </div>
                     
                     <!-- AGE FIELD -->
                     <div class="fields">
                         <label for="shift-date">Age<span> *</span></label>
-                        <input type="text" id="shift-date" name="shift_date" pattern="[1-9]*" minlength="1" maxlength="3" required>
+                        <input type="text" id="shift-date" name="employ_age" pattern="[1-9]" minlength="1" maxlength="3" required>
                     </div>
                 </div>
                
                  <!-- MODAL BUTTON CONTAINER -->
                 <div class="modal-btn-container">
                     <input type="button" value="Cancel" class="shiftCancelBtn modal-btn" id="shiftCancel-btn">
-                    <button class="save-btn modal-btn" id="save-btn" type="submit" name="shift-save">Save</button>
+                    <button class="save-btn modal-btn" id="save-btn" type="submit" name="emp-save">Save</button>
                 </div>
             </div>
 
@@ -535,13 +402,13 @@
                 <!-- MOBILE NUMBER FIELD -->
                 <div class="fields">
                     <label for="shift-orig">Mobile number<span> *</span></label>
-                    <input type="text" id="shift-orig" name="shift_orig" pattern="[0-9]{11}" maxlength="11" placeholder="eg. 09XXXXXXXXX" required >
+                    <input type="text" id="shift-orig" name="employ_mobile" pattern="[0-9]{11}" maxlength="11" placeholder="eg. 09XXXXXXXXX" required >
                 </div> 
 
                 <!-- DESIGNATION FIELD -->
                 <div class="fields">
                     <label for="shift-new"> Designation/Position<span> *</span></label>
-                    <select name="shift_new" id="shift-new" required>
+                    <select name="employ_position" id="shift-new" required>
                         <option value="" selected disabled>Select Designation</option>
                         <option value="Administrative Officer">Administrative Officer</option>
                         <option value="Accountant">Accountant</option>
@@ -555,13 +422,13 @@
                 <!-- EMAIL FIELD -->
                 <div class="fields">
                     <label for="shift-reason">Email<span> *</span></label>
-                    <input type="text" id="shift-reason" name="shift_reason" placeholder="eg. example@gmail.com">
+                    <input type="text" id="shift-reason" name="employ_email" placeholder="eg. example@gmail.com">
                 </div>
 
                 <!-- SEX FIELD -->
                 <div class="fields">
                     <label for="shift-approvedBy">Sex<span> *</span></label>
-                    <select name="shift_approveBy" id="shift-approvedBy" required>
+                    <select name="employ_sex" id="shift-approvedBy" required>
                         <option value="" selected disabled>Select Sex</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
