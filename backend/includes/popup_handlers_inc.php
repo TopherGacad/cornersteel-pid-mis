@@ -115,14 +115,14 @@
     //----------------------------------------------------------------//
     //------ SUCCESS AND FAILURE URLS FOR CHANGE SHIFT (INSERT) ------//
 
-    if(isset($_GET['CSinsert'])){
+    if(isset($_GET['Empinsert'])){
 
-        if($_GET["CSinsert"] == "successful"){
-            echo '<script>  setTimeout(function() { alert("Change shift filed Successfully"); } , 0); </script>';
+        if($_GET["Empinsert"] == "successful"){
+            echo '<script>  setTimeout(function() { alert("Employee added Successfully"); } , 0); </script>';
         }
 
-        else if($_GET["CSinsert"] == "failed"){
-            echo '<script>  setTimeout(function() { alert("Change shift filing Failed"); } , 0); </script>';
+        else if($_GET["Empinsert"] == "failed"){
+            echo '<script>  setTimeout(function() { alert("Adding employee Failed"); } , 0); </script>';
         }
 
     }

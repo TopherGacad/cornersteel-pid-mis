@@ -8,7 +8,7 @@
     $dbhost = "localhost";
     $dbuser = "root";
     $dbpass = "";
-    $dbname = "csc-mis";
+    $dbname = "csc-pid-mis";
 
     //--- DATABASE CONNECTION FUNCTION ---//
     $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
