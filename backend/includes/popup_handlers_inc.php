@@ -54,7 +54,7 @@
             echo '<script>  setTimeout(function() { alert("Overtime update statement failed"); } , 0); </script>';
         }
 
-        else if($_GET["error"] == "csupdatestmtfailed"){
+        else if($_GET["error"] == "empupdatestmtfailed"){
             echo '<script>  setTimeout(function() { alert("Change shift update statement failed"); } , 0); </script>';
         }
 
@@ -160,14 +160,14 @@
     //----------------------------------------------------------------//
     //------ SUCCESS AND FAILURE URLS FOR CHANGE SHIFT (UPDATE) ------//
 
-    if(isset($_GET['CSupdate'])){
+    if(isset($_GET['Empupdate'])){
 
-        if($_GET["CSupdate"] == "successful"){
-            echo '<script>  setTimeout(function() { alert("Change shift updated Successfully"); } , 0); </script>';
+        if($_GET["Empupdate"] == "successful"){
+            echo '<script>  setTimeout(function() { alert("Employee details updated Successfully"); } , 0); </script>';
         }
 
-        else if($_GET["CSupdate"] == "failed"){
-            echo '<script>  setTimeout(function() { alert("Change shift update Failed"); } , 0); </script>';
+        else if($_GET["Empupdate"] == "failed"){
+            echo '<script>  setTimeout(function() { alert("Employee details update Failed"); } , 0); </script>';
         }
 
     }

@@ -276,7 +276,7 @@
             }
 
             //--- BINDS THE VARIABLE TO BE INSERTED USING BIND PARAMETER STATEMENT ---//
-            mysqli_stmt_bind_param($stmt, "ssssssissi", $firstname, $middlename, $lastname, $position, $department, $company, 
+            mysqli_stmt_bind_param($stmt, "sssssssssi", $firstname, $middlename, $lastname, $position, $department, $company, 
             $phone, $email, $sex, $age);
 
             //--- EXECUTE STATEMENT ---//
@@ -293,29 +293,27 @@
         //----------------------------------------------------------------//
         //-----------------FUNCTION FOR CHANGE SHIFT EDIT-----------------//
         
-        function ChangeShiftEdit($conn, $shiftid, $company, $department, $firstname, $middlename, $lastname, $origin, $new, $date, $reason, $approved, $noted){
-            
-            $effectiveDate = date('Y-m-d', strtotime($date));
+        function EditEmployee($conn, $empid, $company, $department, $firstname, $middlename, $lastname, $age, $phone, $position, $email, $sex){
 
-            $sql = "UPDATE changeshift_csc SET cs_company = ?, cs_dept = ?, cs_firstname = ?, cs_middlename = ?, cs_lastname = ?, cs_shiftorigin = ?, cs_shiftnew = ?,
-            cs_reason = ?, cs_approved = ?, cs_noted = ?, cs_date = ? WHERE cs_id = $shiftid;";
+            $sql = "UPDATE employee_pid SET emp_firstname = ?, emp_middlename = ?, emp_lastname = ?, emp_position = ?, emp_dept = ?, emp_company = ?, emp_mobile = ?,
+            emp_email = ?, emp_gender = ?, emp_age = ?, emp_datecreated = emp_datecreated WHERE emp_id = $empid;";
             
             $stmt = mysqli_stmt_init($conn);
 
             if(!mysqli_stmt_prepare($stmt, $sql)){
 
                 //--- TAKES USER BACK TO THE CHANGE SHIFT PAGE 'changeshift.php' WHENEVER PREPARE STATEMENT FAILS ---//
-                header("Location: ../../frontend/views/php/changeshift.php?error=csupdatestmtfailed");
+                header("Location: ../../frontend/views/php/editemployee.php?error=empupdatestmtfailed");
                 exit();
             }   
 
-            mysqli_stmt_bind_param($stmt, "sssssssssss", $company, $department, $firstname, $middlename, $lastname, $origin, 
-            $new, $reason, $approved, $noted, $effectiveDate);
+            mysqli_stmt_bind_param($stmt, "sssssssssi", $firstname, $middlename, $lastname, $position, $department, $company, 
+            $phone, $email, $sex, $age);
 
             mysqli_stmt_execute($stmt);
 
             if(mysqli_stmt_affected_rows($stmt) > 0){
-                header("Location: ../../frontend/views/php/main.php?CSupdate=successful");
+                header("Location: ../../frontend/views/php/main.php?Empupdate=successful");
             }
             else{
                 header("Location: ../../frontend/views/php/main.php?error=norecordmodified");

@@ -105,29 +105,12 @@
                 </tr>
 
                 <tbody id="shift-table-body">
-                <tr>
-                    <td class="name">Christopher Gacad</td>
-                    <td>CSC</td>
-                    <td class="status">
-                        <div class="stat-container">
-                            <p>Available</p>
-                        </div>
-                    </td>
-                    <td>Worker</td>
-                    <td class="contact">09938574857</td>
-                    <td class="sex">Male</td>
-                    <td>07/14/2023</td>
-                    <td class="actions">
-                        <a href="#"><i class="act-icon fa-solid fa-trash-can"></i></a>
-                        <a href="../../views/php/changeshift.php"><i class="act-icon fa-solid fa-pen-to-square"></i></a>
-                    </td>
-                </tr>
                 
                 <?php 
                     include_once '../../../backend/includes/dbconn_inc.php';         
 
                     if(isset($_GET['deleteemp'])){
-                        $shiftid = $_GET['deleteemp'];
+                        $empid = $_GET['deleteemp'];
                         
                         $delsql = "DELETE FROM employee_pid WHERE emp_id = ?;";
                         $delstmt = mysqli_stmt_init($conn);
@@ -136,14 +119,14 @@
                             echo 'deletion failed';
                         }
                         else{
-                            mysqli_stmt_bind_param($delstmt, 'i', $shiftid);
+                            mysqli_stmt_bind_param($delstmt, 'i', $empid);
                             mysqli_stmt_execute($delstmt);
 
                             if(mysqli_stmt_affected_rows($delstmt) > 0){
-                                header('Location: main.php?deletion=successful');
+                                header("Location: main.php?deletion=successful");
                             }
                             else{
-                                header('Location: main.php?deletion=failed');
+                                header("Location: main.php?deletion=failed");
                             }
                         }
 
@@ -186,7 +169,7 @@
                                 <td class="sex"><abbr title="' . $sex . '">' . $sex . '</abbr></td>
                                 <td> ' . $creationdate . '</td>     
                                 <td class="actions">
-                                    <a href="?deleteemployee=' . $empid . '"><i class="act-icon fa-solid fa-trash-can"></i></a>
+                                    <a href="?deleteemp=' . $empid . '"><i class="act-icon fa-solid fa-trash-can"></i></a>
                                     <a href="../../views/php/editemployee.php?id=' . $empid . '"><i class="act-icon fa-solid fa-pen-to-square"></i></a>
                                 </td>
                             </tr>';
@@ -407,7 +390,7 @@
                     <!-- AGE FIELD -->
                     <div class="fields">
                         <label for="shift-date">Age<span> *</span></label>
-                        <input type="text" id="shift-date" name="employ_age" pattern="[1-9]" minlength="1" maxlength="3" required>
+                        <input type="text" id="shift-date" name="employ_age" pattern="[1-9]*" minlength="1" maxlength="3" required>
                     </div>
                 </div>
                
@@ -508,6 +491,7 @@
             </div>    
         </form>
     </div>
+
     
     <!-- JAVASCRIPT -->
     <script src="../../js/main.js"></script>
